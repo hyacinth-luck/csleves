@@ -12,7 +12,6 @@
             <user-reply></user-reply>
           </div>
           <div  class="cs-window-send-message-box">
-            <!-- <div class="cs-window-send-message-emoji"></div> -->
             <div class="cs-window-send-message-input">
               <pre contenteditable="true" name="send-box"></pre>
             </div>

@@ -7,7 +7,6 @@
                <div class="MachineReplay-text-info">您好，智能客服为您服务！</div>
             </div>
       </div>
-     
   </div>
 </template>
 
