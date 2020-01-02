@@ -87,12 +87,9 @@ export default {
           if(Object.keys(item)[0] === '用户ID'){
             userI.userId = item['用户ID'][0] 
           }
-          
         }
-        console.log('ietm:',list)
         return userI
       }
-      
     },
     studentDescComputed(){
       return (student)=>{
