@@ -1,22 +1,31 @@
 <template>
   <div id="UserReply">
-      <p class="UserReply-name">用户9127634823</p>
+      <p class="UserReply-name">{{userInfo.name}}</p>
       <div class="UserReply-content clearfix">
            <div class="UserReply-header-img"></div>
            <div class="UserReply-text">
-               <div class="UserReply-text-info">lalal！</div>
+               <div class="UserReply-text-info">{{data.info}}</div>
             </div>
       </div>
   </div>
 </template>
 <script>
 export default {
+    props:{
+      data:{
+          default:{type:'user',info:'lalal！！'}
+      },
+      userInfo:{
+           default:{name:'用户9127634823',userId:'12345'}
+      }
+    },
   name: 'UserReply'
 }
 </script>
 
 <style scoped lang="less">
 #UserReply{
+    font-size:20px;
     padding-right:30px;
     margin-bottom:40px;
     .UserReply-name{
@@ -30,7 +39,7 @@ export default {
             width:40px;
             height: 40px;
             border-radius: 4px;
-            background:url('https://res11.xesimg.com/x5mall/img/login-tips_new.png') no-repeat center;
+            background:url('https://ekt.xesimg.com/web/2017/11/22/15113382042886.png') no-repeat center;
             background-size: cover;
             float:right;
         }
