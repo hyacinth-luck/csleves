@@ -13,14 +13,15 @@
               <div class="cs-window-chat-box clearfix" v-for="(item,index) in  list" :key="index">
                 <machine-replay v-if="item.type==='machine'" :data="item"></machine-replay>
                 <user-reply v-if="item.type==='user'" :data="item" :userInfo='userInfoData'></user-reply>
+                <!-- <van-loading v-if="loading" type="spinner" color="#1989fa" /> -->
               </div>
             </div>
           </div>
           <div  class="cs-window-send-message-box clearfix">
             <div class="cs-window-send-message-input">
-              <input v-model="inputValue" type="text" placeholder="请简短描述您的问题">
+              <input v-model="inputValue" type="text" placeholder="请简短描述您的问题" @keyup.enter="sedMessage">
             </div>
-            <div class="cs-window-send-message-btn" @click="sedMessage">发送</div>
+            <div class="cs-window-send-message-btn"  @click="sedMessage">发送</div>
           </div>
         </div>
         <div class="cs-user-message">
@@ -56,6 +57,7 @@ export default {
     return {
       userInfo:null,
       list:[],
+      loading:false,
       scroll,
       inputValue:'',
       userInfoData:null
@@ -117,19 +119,21 @@ export default {
       }
     },
     async sedMessage(){
-     
+      console.log('键盘')
        if(this.inputValue===''){
          Toast('请填写有效信息！')
          return
        }
         this.list.push({type:'user',info:this.inputValue})
-        
+        this.loading = true
         const {status,data} = await api.sendMessage({msg:this.inputValue,click_id:1})
         if(status===1000){
+          this.loading = false
           this.list.push({type:'machine',info:data})
           this.$nextTick(() => {
               this.$refs.wrapperBox.scrollTo({'behavior': 'smooth', 'top' : this.$refs.wrapper.clientHeight})
               this.inputValue = ''
+              
           })
           return
         }
