@@ -149,7 +149,8 @@ export default {
     .cs-box{
       background-color: #fff;
       width:1800px;
-      height:1318px;
+      // height:1318px;。
+      height:1018px;
       min-height: 516px;
       margin:0 auto;
       border-radius: 5px;
@@ -186,7 +187,8 @@ export default {
             .cs-window-visible{
               width:1200px;
               padding-top: 40px;
-              height: 900px;
+              // height: 900px;
+               height: 700px;
               overflow: hidden;
               border-bottom: 1px solid #e7e7e7;
               border-right: 1px solid #e7e7e7;
@@ -195,7 +197,7 @@ export default {
             .cs-window-send-message-box{
               position: relative;
               width:1200px;
-              height: 300px;
+              height: 200px;
               padding-top:15px;
               border-right: 1px solid #e7e7e7;
               .cs-window-send-message-input{
@@ -228,11 +230,12 @@ export default {
             right: 0;
             top:0;
             width:600px;
-            height: 990px;
+            // height: 990px;
+             height: 790px;
             .cs-user-info{
                 padding-top: 40px;
                 width:100%;
-                height: 900px;
+                height: 700px;
                 border-bottom: 1px solid #e7e7e7;
                 overflow-y: scroll;
                   .cs-user-info-box-li{
@@ -266,7 +269,7 @@ export default {
             }
             .cs-change-user-btn{
               width:100%;
-              height: 300px;
+              height: 200px;
               &>span{
                   display: inline-block;
                   width: 150px;
@@ -277,7 +280,7 @@ export default {
                   text-align: center;
                   color: #fff;
                   margin-left: 40%;
-                  margin-top: 38%;
+                  margin-top: 20%;
                   cursor: pointer;
               }
             }
