@@ -18,7 +18,7 @@
           </div>
           <div  class="cs-window-send-message-box clearfix">
             <div class="cs-window-send-message-input">
-              <input v-model="inputValue" type="text" placeholder="请简短描述您的问题">
+              <input v-model="inputValue" type="text" placeholder="请简短描述您的问题" @keyup.enter="sedMessage">
             </div>
             <div class="cs-window-send-message-btn" @click="sedMessage">发送</div>
           </div>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import  "@/mockData/index.js"
+// import  "@/mockData/index.js"
 import { Toast} from 'vant';
 import UserReply from "@/components/UserReply"
 import MachineReplay from "@/components/MachineReplay"
@@ -102,6 +102,7 @@ export default {
   },
   methods:{
     init(){
+      
        this.inputValue = ''
        this.list = []
        let initData = {type:'machine',info:{reply:'您好，智能客服为您服务！',click_info:[]}}
@@ -110,6 +111,7 @@ export default {
 
     },
     async getUserMessage(){
+      console.log('更换')
       const {status,data} = await api.changeUser()
       if(status == 1000){
         this.userInfo = data
