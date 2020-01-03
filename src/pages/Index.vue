@@ -45,7 +45,8 @@
 </template>
 
 <script>
-// import  "@/mockData/index.js"
+import  "@/mockData/index.js"
+import { Toast} from 'vant';
 import UserReply from "@/components/UserReply"
 import MachineReplay from "@/components/MachineReplay"
 import api from '@/api'
@@ -116,15 +117,23 @@ export default {
       }
     },
     async sedMessage(){
+     
+       if(this.inputValue===''){
+         Toast('请填写有效信息！')
+         return
+       }
         this.list.push({type:'user',info:this.inputValue})
-        this.inputValue = ''
+        
         const {status,data} = await api.sendMessage({msg:this.inputValue,click_id:1})
         if(status===1000){
           this.list.push({type:'machine',info:data})
           this.$nextTick(() => {
               this.$refs.wrapperBox.scrollTo({'behavior': 'smooth', 'top' : this.$refs.wrapper.clientHeight})
+              this.inputValue = ''
           })
+          return
         }
+        Toast('出错了请重试哦！')
     },
     changeUser(){
       this.init()

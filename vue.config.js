@@ -21,7 +21,6 @@ module.exports = {
     types.forEach(type => addStyleResource(config.module.rule('less').oneOf(type)))
   }
 }
-console.log('__dirname:',__dirname)
 function addStyleResource (rule) {
   rule
     .use('style-resource')
