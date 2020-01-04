@@ -9,11 +9,12 @@
       <div class="cs-content clearfix">
         <div class="cs-window">
           <div class="cs-window-visible" ref="wrapperBox">
+            <van-loading class="loading-box" v-if="loading" type="spinner" color="#1989fa" />
             <div class="wrapper" ref="wrapper">
               <div class="cs-window-chat-box clearfix" v-for="(item,index) in  list" :key="index">
                 <machine-replay v-if="item.type==='machine'" :data="item"></machine-replay>
                 <user-reply v-if="item.type==='user'" :data="item" :userInfo='userInfoData'></user-reply>
-                <!-- <van-loading v-if="loading" type="spinner" color="#1989fa" /> -->
+                <!-- <van-loading  type="spinner" color="#1989fa" /> -->
               </div>
             </div>
           </div>
@@ -46,11 +47,12 @@
 </template>
 
 <script>
-import  "@/mockData/index.js"
+// import  "@/mockData/index.js"
 import { Toast} from 'vant';
 import UserReply from "@/components/UserReply"
 import MachineReplay from "@/components/MachineReplay"
 import api from '@/api'
+import { setTimeout } from 'timers';
 export default {
   name: 'Index',
   data(){
@@ -128,16 +130,18 @@ export default {
         this.loading = true
         const {status,data} = await api.sendMessage({msg:this.inputValue,click_id:1})
         if(status===1000){
-          this.loading = false
-          this.list.push({type:'machine',info:data})
-          this.$nextTick(() => {
-              this.$refs.wrapperBox.scrollTo({'behavior': 'smooth', 'top' : this.$refs.wrapper.clientHeight})
-              this.inputValue = ''
-              
-          })
-          return
+          this.inputValue = ''
+          setTimeout(()=>{
+              this.loading = false
+              this.list.push({type:'machine',info:data})
+              this.$nextTick(() => {
+                  this.$refs.wrapperBox.scrollTo({'behavior': 'smooth', 'top' : this.$refs.wrapper.clientHeight})
+              })
+          },200)
+        
+        }else{
+           Toast('出错了请重试哦！')
         }
-        Toast('出错了请重试哦！')
     },
     changeUser(){
       this.init()
@@ -147,6 +151,12 @@ export default {
 </script>
 
 <style scoped lang="less">
+.loading-box{
+  position: absolute;
+  top:25%;
+  left:30%;
+  z-index: 200;
+}
 
 #indexPage{
     padding-top: 3%;
