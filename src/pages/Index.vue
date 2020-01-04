@@ -141,6 +141,7 @@ export default {
         
         }else{
            Toast('出错了请重试哦！')
+           this.loading = false
         }
     },
     changeUser(){

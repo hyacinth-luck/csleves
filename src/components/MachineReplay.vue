@@ -17,6 +17,7 @@
 
 <script>
 import api from '@/api'
+import { Toast} from 'vant';
 import { setTimeout } from 'timers';
 export default {
   props:{
@@ -42,13 +43,16 @@ export default {
           if(status===1000){
               setTimeout(()=>{
                     this.$parent.list.push({type:'machine',info:data})
-                    this.$parent.loading = 
+                    this.$parent.loading = false 
                     this.$nextTick(() => {
                         this.$parent.$refs.wrapperBox.scrollTo({'behavior': 'smooth', 'top' : this.$parent.$refs.wrapper.clientHeight})
                     })
 
               },200)
          
+        }else{
+            Toast('出错了请重试哦！')
+            this.$parent.loading = false
         }
           
 
