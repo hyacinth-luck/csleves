@@ -17,6 +17,8 @@
 
 <script>
 import api from '@/api'
+import { Toast} from 'vant';
+import { setTimeout } from 'timers';
 export default {
   props:{
       data:{
@@ -36,12 +38,21 @@ export default {
       async selectedQ(item){
           const msg =this.$parent.studentDescComputed(item)
           const keyMsg = Object.keys(item)[0]
+          this.$parent.loading = true
           const {status,data} = await api.sendMessage({msg:msg,click_id:keyMsg})
           if(status===1000){
-          this.$parent.list.push({type:'machine',info:data})
-          this.$nextTick(() => {
-              this.$parent.$refs.wrapperBox.scrollTo({'behavior': 'smooth', 'top' : this.$parent.$refs.wrapper.clientHeight})
-          })
+              setTimeout(()=>{
+                    this.$parent.list.push({type:'machine',info:data})
+                    this.$parent.loading = false 
+                    this.$nextTick(() => {
+                        this.$parent.$refs.wrapperBox.scrollTo({'behavior': 'smooth', 'top' : this.$parent.$refs.wrapper.clientHeight})
+                    })
+
+              },200)
+         
+        }else{
+            Toast('出错了请重试哦！')
+            this.$parent.loading = false
         }
           
 

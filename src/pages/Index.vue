@@ -9,10 +9,12 @@
       <div class="cs-content clearfix">
         <div class="cs-window">
           <div class="cs-window-visible" ref="wrapperBox">
+            <van-loading class="loading-box" v-if="loading" type="spinner" color="#1989fa" />
             <div class="wrapper" ref="wrapper">
               <div class="cs-window-chat-box clearfix" v-for="(item,index) in  list" :key="index">
                 <machine-replay v-if="item.type==='machine'" :data="item"></machine-replay>
                 <user-reply v-if="item.type==='user'" :data="item" :userInfo='userInfoData'></user-reply>
+                <!-- <van-loading  type="spinner" color="#1989fa" /> -->
               </div>
             </div>
           </div>
@@ -20,7 +22,7 @@
             <div class="cs-window-send-message-input">
               <input v-model="inputValue" type="text" placeholder="请简短描述您的问题" @keyup.enter="sedMessage">
             </div>
-            <div class="cs-window-send-message-btn" @click="sedMessage">发送</div>
+            <div class="cs-window-send-message-btn"  @click="sedMessage">发送</div>
           </div>
         </div>
         <div class="cs-user-message">
@@ -50,12 +52,14 @@ import { Toast} from 'vant';
 import UserReply from "@/components/UserReply"
 import MachineReplay from "@/components/MachineReplay"
 import api from '@/api'
+import { setTimeout } from 'timers';
 export default {
   name: 'Index',
   data(){
     return {
       userInfo:null,
       list:[],
+      loading:false,
       scroll,
       inputValue:'',
       userInfoData:null
@@ -119,23 +123,28 @@ export default {
       }
     },
     async sedMessage(){
-     
+      console.log('键盘')
        if(this.inputValue===''){
          Toast('请填写有效信息！')
          return
        }
         this.list.push({type:'user',info:this.inputValue})
-        
+        this.loading = true
         const {status,data} = await api.sendMessage({msg:this.inputValue,click_id:1})
         if(status===1000){
-          this.list.push({type:'machine',info:data})
-          this.$nextTick(() => {
-              this.$refs.wrapperBox.scrollTo({'behavior': 'smooth', 'top' : this.$refs.wrapper.clientHeight})
-              this.inputValue = ''
-          })
-          return
+          this.inputValue = ''
+          setTimeout(()=>{
+              this.loading = false
+              this.list.push({type:'machine',info:data})
+              this.$nextTick(() => {
+                  this.$refs.wrapperBox.scrollTo({'behavior': 'smooth', 'top' : this.$refs.wrapper.clientHeight})
+              })
+          },200)
+        
+        }else{
+           Toast('出错了请重试哦！')
+           this.loading = false
         }
-        Toast('出错了请重试哦！')
     },
     changeUser(){
       this.init()
@@ -145,6 +154,12 @@ export default {
 </script>
 
 <style scoped lang="less">
+.loading-box{
+  position: absolute;
+  top:25%;
+  left:30%;
+  z-index: 200;
+}
 
 #indexPage{
     padding-top: 3%;
