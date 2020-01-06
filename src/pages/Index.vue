@@ -46,7 +46,7 @@
 </template>
 
 <script>
-// import  "@/mockData/index.js"
+import  "@/mockData/index.js"
 import { Toast} from 'vant';
 import UserReply from "@/components/UserReply"
 import MachineReplay from "@/components/MachineReplay"
