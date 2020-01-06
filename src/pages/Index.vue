@@ -14,7 +14,6 @@
               <div class="cs-window-chat-box clearfix" v-for="(item,index) in  list" :key="index">
                 <machine-replay v-if="item.type==='machine'" :data="item"></machine-replay>
                 <user-reply v-if="item.type==='user'" :data="item" :userInfo='userInfoData'></user-reply>
-                <!-- <van-loading  type="spinner" color="#1989fa" /> -->
               </div>
             </div>
           </div>
@@ -106,13 +105,11 @@ export default {
   },
   methods:{
     init(){
-      
        this.inputValue = ''
        this.list = []
        let initData = {type:'machine',info:{reply:'您好，智能客服为您服务！',click_info:[]}}
        this.list.push(initData)
        this.getUserMessage()
-
     },
     async getUserMessage(){
       console.log('更换')
@@ -175,7 +172,6 @@ export default {
     .cs-box{
       background-color: #fff;
       width:1800px;
-      // height:1318px;。
       height:1018px;
       min-height: 516px;
       margin:0 auto;
@@ -213,8 +209,7 @@ export default {
             .cs-window-visible{
               width:1200px;
               padding-top: 40px;
-              // height: 900px;
-               height: 700px;
+              height: 700px;
               overflow: hidden;
               border-bottom: 1px solid #e7e7e7;
               border-right: 1px solid #e7e7e7;
@@ -256,8 +251,7 @@ export default {
             right: 0;
             top:0;
             width:600px;
-            // height: 990px;
-             height: 790px;
+            height: 790px;
             .cs-user-info{
                 padding-top: 40px;
                 width:100%;
