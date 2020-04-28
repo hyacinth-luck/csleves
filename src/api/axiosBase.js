@@ -9,7 +9,8 @@ axios.interceptors.response.use(function (response) {
     Toast('出错了请重试哦！')
     return response
   }, function (error) {
+    console.log('error:',error)
     Toast('出错了请重试哦！')
-    return Promise.reject(error);
+    return {stat:0,data:'数据出错'};
   });
 export default axios
