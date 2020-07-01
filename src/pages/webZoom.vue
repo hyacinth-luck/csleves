@@ -1,7 +1,7 @@
 /* eslint-disable vue/no-dupe-keys */
 <template>
   <div id="webZoom">
-    webZoom
+    webZoom welcome！
   </div>
 </template>
 
