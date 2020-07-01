@@ -1,7 +1,28 @@
 /* eslint-disable no-console */
+const webpack = require("webpack");
 const path = require('path')
+const https = require('https')
+const fs = require('fs')
+console.log('__dirname:',__dirname)
 
 module.exports = {
+    devServer:{
+      disableHostCheck:true,
+      https: {
+        key: fs.readFileSync(path.join(__dirname, './cert/privatekey.pem')),
+        cert: fs.readFileSync(path.join(__dirname, './cert/certificate.pem'))
+      }
+    },
+    configureWebpack: {
+    //支持jquery
+        plugins: [
+            new webpack.ProvidePlugin({
+                $:"jquery",
+                jQuery:"jquery",
+                "windows.jQuery":"jquery"
+            })
+        ]
+    },
     css: {
         loaderOptions: {
              postcss: {

@@ -3,20 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve",
+    "dev": "vue-cli-service serve --https",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "@zoomus/websdk": "^1.7.9",
+    "axios": "^0.19.2",
     "better-scroll": "^1.15.2",
     "core-js": "^3.4.3",
+    "jquery": "^3.5.1",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lib-flexible": "^0.3.2",
     "mockjs": "^1.1.0",
     "vant": "^2.4.1",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-router": "^3.3.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
@@ -33,7 +36,8 @@
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "jquery": true
     },
     "extends": [
       "plugin:vue/essential",
