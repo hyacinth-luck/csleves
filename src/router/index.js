@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '../pages/Index.vue'
-import webZoom from '../pages/webZoom.vue'
-
+const Index  = () => import('../pages/Index.vue')
+const webZoom = () => import('../pages/webZoom.vue')
+const XSS = () => import('../pages/XSS.vue')
+const CSRF = () => import('../pages/CSRF.vue')
+ 
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +24,22 @@ export default new Router({
         component: webZoom,
         meta: {
           title: 'web zoom'
+        }
+      },
+      {
+        path: '/xss',
+        name: 'xss',
+        component:XSS,
+        meta: {
+          title: 'XSS'
+        }
+      },
+      {
+        path: '/csrf',
+        name: 'csrf',
+        component:CSRF,
+        meta: {
+          title: 'csrf'
         }
       },
     {

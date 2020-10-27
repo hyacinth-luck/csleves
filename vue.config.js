@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const webpack = require("webpack");
 const path = require('path')
+// eslint-disable-next-line no-unused-vars
 const https = require('https')
 const fs = require('fs')
 console.log('__dirname:',__dirname)
@@ -11,7 +12,10 @@ module.exports = {
       https: {
         key: fs.readFileSync(path.join(__dirname, './cert/privatekey.pem')),
         cert: fs.readFileSync(path.join(__dirname, './cert/certificate.pem'))
-      }
+      },
+      // eslint-disable-next-line no-dupe-keys
+      disableHostCheck: true
+      
     },
     configureWebpack: {
     //支持jquery
