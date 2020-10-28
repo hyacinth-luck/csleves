@@ -96,9 +96,10 @@ export default {
 <style lang="less">
 .XSS{
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #fff;
   text-align: center;
+  padding-bottom: 10%;
   input{
     border:1px solid #333;
   }
@@ -107,8 +108,8 @@ export default {
        color: green;
        font-size: 30px;
        text-align: center;
-       margin-bottom: 5%;
-       padding-top:10%;
+       margin-bottom: 1%;
+       padding-top:2%;
     }
   }
   .info{
