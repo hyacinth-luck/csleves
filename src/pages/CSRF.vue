@@ -5,7 +5,7 @@
       <img style="width:100px;height:100px;" src="https://teachee-site.oss-ap-south-1.aliyuncs.com/frontend/sites/test/7982151405935329280/jpeg/13_1603872989642_0a5d039e.jpeg
 "/>
       <form id="form1" action="https://ocenter.xueersi.com/MyOrderData/ajaxCancelOrder" method=POST>
-        <input type="hidden" name="orderNum" value="201028160420001168689925" />
+        <input type="hidden" name="orderNum" value="201029181741001279099925" />
       </form>
      
        <button type="submit" form="form1" value="Submit">取消订单</button>
@@ -14,6 +14,8 @@
       <!-- orderNum: 201028005640001662109925 -->
       <div class="info">用户名<input v-model="username"/></div>
       <button @click="login">用户登陆</button>
+
+   
     </div>
   </div>
 </template>

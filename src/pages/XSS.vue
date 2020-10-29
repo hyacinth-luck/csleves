@@ -9,12 +9,13 @@
       <span>评论：</span>
       <input v-model="value"/>
       <button @click="commit">submit</button>
-      <div class="info">
-        评论提交结果查看：<p v-html="commitV"> </p>
+      <div class="info" v-if="commitV">
+        评论提交结果查看：<p v-html="$xss(commitV)"> </p>
+        <!-- <p v-html="commitV"> </p> -->
       </div>
-      <!-- 
-        提交评论型攻击：
-        <img src="asd" onerror="alert('存储型攻击')"/> -->
+      
+        <!-- 提交评论型攻击： -->
+        <!-- <img src="asd" onerror="alert('图片====》存储型攻击')"/> -->
     </div>
      <div class="xss-info">
       <h2> dom攻击：</h2>
@@ -31,17 +32,17 @@
       <span onclick="alert(window.document.cookie)">http only</span>
       <div class="info">
         <span >展示检查：</span>
-        <!-- <div class="info">
-          评论提交结果查看：<p v-html="$xss(commitV)"> </p>
-        </div> -->
+        <div class="info">
+          <!-- 评论提交结果查看：<p v-html="$xss(commitV)"> </p> -->
+        </div>
       </div>
 
       <div class="info">
         <span >提交检查：</span>
         <div class="info">
-         提交评论：<input v-model="commitCheck"/>
+         <!-- 提交评论：<input v-model="commitCheck"/> -->
           <!-- <img src="asd" onerror="alert('存储型攻击')"/> -->
-         <p>{{commitCheckInfo}}</p>
+         <!-- <p>{{commitCheckInfo}}</p> -->
         </div>
       </div>
       
@@ -77,9 +78,7 @@ export default {
      Object.defineProperty(Vue.prototype, '$xss', {
       value: xss
     })
-
   }
-   
   },
   methods: {
     async commit(){
@@ -89,6 +88,7 @@ export default {
    async getCommit(){
     const {data} = await api.getCommit()
     this.commitV = data.data
+    console.log('this.commitV==>',this.commitV)
     }
   }
 }
