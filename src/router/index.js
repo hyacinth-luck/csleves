@@ -4,6 +4,7 @@ const Index  = () => import('../pages/Index.vue')
 const webZoom = () => import('../pages/webZoom.vue')
 const XSS = () => import('../pages/XSS.vue')
 const CSRF = () => import('../pages/CSRF.vue')
+const KAKAO = () => import('../pages/KAKAO.vue')
  
 Vue.use(Router)
 
@@ -41,6 +42,15 @@ export default new Router({
         meta: {
           title: 'csrf'
         }
+      },
+      {
+        path:"/kakao",
+        name:'kakao',
+        component:KAKAO,
+        meta:{
+          title:'kakao'
+        }
+
       },
     {
       path: '*',
